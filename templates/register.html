@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <title>register</title>
+  </head>
+  <body>
+    <section class="md:flex md:justify-center my-2">
+      <h2 class="text-2xl">create your account</h2>
+      {% with messages = get_flashed_messages() %} {% if messages %}
+      <ul>
+        {% for message in messages %}
+        <li>{{ message }}</li>
+        {% endfor %}
+      </ul>
+      {% endif %} {% endwith %}
+      <!-- register form -->
+    </section>
+    <div class="md:flex md:justify-center">
+      <!-- message -->
+
+      <form
+        action="/register"
+        method="post"
+        enctype="multipart/form-data"
+        class="flex flex-col md:w-2/3"
+      >
+        <input
+          placeholder="username"
+          type="text"
+          id="username"
+          name="username"
+          required
+          class="focus:outline-none focus:border-green-500 focus:ring-green-500 border border p-3 m-3 rounded-md"
+        />
+
+        <input
+          class="focus:outline-none focus:border-green-500 focus:ring-green-500 border border p-3 m-3 rounded-md"
+          type="password"
+          id="password"
+          name="password"
+          placeholder="password"
+          required
+        />
+
+        <input
+          type="text"
+          id="fullname"
+          name="fullname"
+          required
+          placeholder="fullname"
+          class="focus:outline-none focus:border-green-500 focus:ring-green-500 border border p-3 m-3 rounded-md"
+        />
+
+        <input
+          type="email"
+          id="email"
+          name="email"
+          required
+          placeholder="email"
+          class="focus:outline-none focus:border-green-500 focus:ring-green-500 border border p-3 m-3 rounded-md"
+        />
+
+        <input
+          class="focus:outline-none focus:border-green-500 focus:ring-green-500 border border p-3 m-3 rounded-md"
+          type="text"
+          id="user_profile"
+          name="user_profile"
+          placeholder="profile image"
+          required
+        />
+        <button
+          class="hover:bg-green-800 ml-3 bg-green-700 p-2 rounded-md text-white font-semibold w-40"
+        >
+          register
+        </button>
+      </form>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>home page</title>
+  </head>
+  <body>
+    <header
+      class="p-3 my-3 flex flex-col md:flex-row items-center justify-evenly"
+    >
+      <!-- menu -->
+      <nav class="w-96 flex items-center md:w-1/3">
+        <section class="flex items-center">
+          {% if user_profile %}
+
+          <img
+            width="40"
+            height="40"
+            src="{{user_profile}}"
+            alt=""
+            class="rounded-full"
+          />
+
+          {% endif %}
+        </section>
+
+        <ul class="flex justify-evenly text-xl w-full">
+          <div>
+            {% if 'username' in session %}
+            <li>
+              <a class="hover:text-green-800" href="{{ url_for('logout') }}"
+                >logout</a
+              >
+              <a class="hover:text-green-800" href="{{ url_for('add_post') }}"
+                >add post</a
+              >
+            </li>
+
+            {% else %}
+            <li>
+              <a class="hover:text-green-800" href="{{ url_for('login') }}"
+                >login</a
+              >
+              <a class="hover:text-green-800" href="{{ url_for('register') }}"
+                >register</a
+              >
+            </li>
+
+            {% endif %}
+          </div>
+        </ul>
+      </nav>
+      <!-- form -->
+      <div class="flex justify-center ml-7 md:ml-0">
+        <form action="/" method="post" class="my-3 md:my-0">
+          <input
+            class="border border p-2 rounded-md"
+            type="text"
+            name="search"
+            placeholder="search post"
+          />
+          <button
+            class="bg-green-700 p-2 rounded-md text-white font-semibold"
+            type="submit"
+          >
+            search post
+          </button>
+        </form>
+      </div>
+    </header>
+
+    <!-- all posts -->
+    {% if search_posts %}
+
+    <!-- search result -->
+    {% for post in search_posts %}
+    <h1 class="ml-3 text-2xl">search result</h1>
+    <section class="grid md:grid-cols-3 lg:grid-cols-4 md:gap-3 my-3">
+      <div class="p-2 border rounded-md">
+        <h1 class="text-lg">{{post.title}}</h1>
+        <div class="h-32 overflow-hidden">
+          <img
+            src="{{post.image}}"
+            alt=""
+            class="rounded-md w-full h-full object-cover"
+          />
+        </div>
+        <div class="flex p-1 font-semibold text-sm">
+          <p class="mr-2">{{post.author}}</p>
+          <p>{{post.date}}</p>
+        </div>
+        <p class="text-sm">{{ post.description }}</p>
+        <button
+          class="hover:bg-green-800 mt-2 bg-green-700 p-2 rounded-md text-white font-semibold text-sm"
+        >
+          <a href="{{ url_for('post_detail', post_id=post.id) }}">
+            Read More
+          </a>
+        </button>
+      </div>
+    </section>
+    {% endfor %} {% else %}
+    <section class="grid md:grid-cols-3 lg:grid-cols-4 md:gap-3 md:ml-3">
+      {% for post in posts %}
+      <!-- post one -->
+      <div class="p-2 md:border rounded-md">
+        <h1>{{post.title}}</h1>
+        <img src="{{post.image}}" alt="" class="rounded-md h-80 w-full" />
+        <div class="flex p-1 font-semibold">
+          <p>author : <span>{{post.author}}</span></p>
+          <p class="ml-2">createAt : <span>{{post.date}}</span></p>
+        </div>
+        <p class="ml-1">
+          {{post.description}}
+          <a
+            href="{{ url_for('post_detail', post_id=post.id) }}"
+            class="hover:bg-green-800 mt-2 bg-green-700 p-2 rounded-md text-white font-semibold text-sm"
+          >
+            Read More
+          </a>
+        </p>
+      </div>
+
+      {% endfor %}
+    </section>
+    {% endif %}
+  </body>
+</html>

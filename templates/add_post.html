@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>create post</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <section class="md:flex md:justify-center my-2">
+      {% with messages = get_flashed_messages() %} {% if messages %}
+      <ul>
+        {% for message in messages %}
+        <li>{{ message }}</li>
+        {% endfor %}
+      </ul>
+      {% endif %} {% endwith %}
+    </section>
+    <div class="md:flex md:justify-center">
+      <form class="flex flex-col md:w-2/3" action="/add_post" method="post">
+        <input
+          type="text"
+          id="title"
+          name="title"
+          placeholder="title"
+          required
+          class="focus:outline-none focus:border-green-500 focus:ring-green-500 border border p-3 m-3 rounded-md"
+        />
+
+        <input
+          class="focus:outline-none focus:border-green-500 focus:ring-green-500 border border p-3 m-3 rounded-md"
+          id="description"
+          name="description"
+          rows="4"
+          cols="50"
+          required
+          placeholder="description"
+        />
+
+        <input
+          placeholder="post image"
+          type="text"
+          id="image"
+          name="image"
+          required
+          class="focus:outline-none focus:border-green-500 focus:ring-green-500 border border p-3 m-3 rounded-md"
+        />
+
+        <textarea
+          class="resize-none focus:outline-none focus:border-green-500 focus:ring-green-500 border border p-3 m-3 rounded-md"
+          id="content"
+          name="content"
+          rows="4"
+          cols="50"
+          required
+          placeholder="post content"
+        ></textarea>
+        <button
+          type="submit"
+          class="hover:bg-green-800 ml-3 bg-green-700 p-2 rounded-md text-white font-semibold w-40"
+        >
+          create post
+        </button>
+      </form>
+    </div>
+  </body>
+</html>

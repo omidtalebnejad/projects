@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>post</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <section class="p-3">
+      <figure>
+        <img
+          class="w-full md:h-96 object-cover rounded-md"
+          src="{{post.image}}"
+          alt=""
+        />
+      </figure>
+      <div class="flex p-1 font-semibold">
+        <p>author: <span>{{ post.author }}</span></p>
+        <p class="ml-2">date : <span>{{ post.date }}</span></p>
+      </div>
+      <h1 class="text-4xl my-3">{{ post.title }}</h1>
+
+      <div class="my-2 font-semibold">
+        <p>{{ post.description }}</p>
+      </div>
+      <!-- content -->
+      <article>
+        <p>{{ post.content }}</p>
+      </article>
+    </section>
+  </body>
+</html>

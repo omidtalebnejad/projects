@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>register</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <section id="error-message" class="md:flex md:justify-center my-2">
+      {% with messages = get_flashed_messages(category_filter=['error']) %} {%
+      if messages %}
+      <ul>
+        {% for message in messages %}
+        <li>{{ message }}</li>
+        {% endfor %}
+      </ul>
+      {% endif %} {% endwith %}
+    </section>
+    <div class="md:flex md:justify-center">
+      <form action="/login" method="post" class="flex flex-col md:w-2/3">
+        <input
+          class="focus:outline-none focus:border-green-500 focus:ring-green-500 border border p-3 m-3 rounded-md"
+          type="text"
+          id="username"
+          name="username"
+          placeholder="username"
+        />
+        <input
+          class="focus:outline-none focus:border-green-500 focus:ring-green-500 border border p-3 m-3 rounded-md"
+          type="password"
+          id="password"
+          name="password"
+          placeholder="password"
+        />
+        <button
+          class="hover:bg-green-800 ml-3 bg-green-700 p-2 rounded-md text-white font-semibold w-40"
+        >
+          login
+        </button>
+      </form>
+    </div>
+  </body>
+</html>
